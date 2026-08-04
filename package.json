@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "ts-ip2region2": "^1.8.0",
     "twikoo-vercel": "latest"
   }
 }
