@@ -8,8 +8,14 @@ exports.handler = async function (event, context) {
   const Ip2Region = require("ts-ip2region2");
   console.error("111111111", require("twikoo-func/utils").getIpRegion);
   require("twikoo-func/utils").getIpRegion = ({ ip, detail = false }) => {
-    const result = searcher.search(ip);
-    return result.region;
+    try {
+      const searcher = new Ip2Region.Ip2Region();
+      const result = searcher.search(ip);
+      return result.region;
+    } catch (e) {
+      console.error(e);
+      return "";
+    }
   };
   console.error("222222", require("twikoo-func/utils").getIpRegion);
 
