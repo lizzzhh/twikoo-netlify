@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "postinstall": "npm rebuild --build-from-source ts-ip2region2"
+  },
   "dependencies": {
     "ts-ip2region2": "^1.8.0",
     "twikoo-vercel": "latest"
