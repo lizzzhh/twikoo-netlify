@@ -1,9 +1,13 @@
 {
   "scripts": {
-    "postinstall": "npm rebuild --build-from-source ts-ip2region2"
+    "postinstall": "pnpm run rebuild-ip2region",
+    "rebuild-ip2region": "cd node_modules/ts-ip2region2 && node-gyp rebuild"
   },
   "dependencies": {
     "ts-ip2region2": "^1.8.0",
     "twikoo-vercel": "latest"
+  },
+  "devDependencies": {
+    "node-gyp": "^13.0.1"
   }
 }
