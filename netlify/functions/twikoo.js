@@ -5,33 +5,15 @@
  * https://docs.netlify.com/functions/create/?fn-language=js
  */
 exports.handler = async function (event, context) {
-  
-const Ip2Region = require("ts-ip2region2");
-console.error("111111111",require("twikoo-func/utils/lib").getIpToRegion);
-require("twikoo-func/utils/lib").getIpToRegion = () => {
-  return {
-    create() {
-      const searcher = new Ip2Region.Ip2Region();
-      return {
-        btreeSearchSync(ipStr) {
-          const result = searcher.search('ipStr');
-          let parts = result.region.split("|");
-          if (parts.length === 4) {
-            parts.splice(1, 0, "0"); // 在第二位置插入区域占位符
-          }
-          const fullRegion = parts.join("|");
-          return { region: fullRegion }
-        },
-      };
-    },
+  const Ip2Region = require("ts-ip2region2");
+  console.error("111111111", require("twikoo-func/utils").getIpRegion);
+  require("twikoo-func/utils").getIpRegion = ({ ip, detail = false }) => {
+    const result = searcher.search(ip);
+    return result.region;
   };
-};
-console.error("222222",require("twikoo-func/utils/lib").getIpToRegion);
+  console.error("222222", require("twikoo-func/utils").getIpRegion);
 
-const twikoo = require("twikoo-vercel");
-
-
-
+  const twikoo = require("twikoo-vercel");
 
   process.env.VERCEL_URL = event.rawUrl.replace(/^https?:\/\//, "");
   process.env.TWIKOO_IP_HEADERS = JSON.stringify([

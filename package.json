@@ -1,7 +1,7 @@
 {
   "scripts": {
     "postinstall": "pnpm run rebuild-ip2region",
-    "rebuild-ip2region": "cd node_modules/ts-ip2region2 && node-gyp rebuild"
+    "rebuild-ip2region": "cd node_modules/ts-ip2region2 && node-gyp rebuild && node scripts/extract.js"
   },
   "dependencies": {
     "ts-ip2region2": "^1.8.0",
