@@ -1,5 +1,3 @@
-const twikoo = require("twikoo-vercel");
-const Ip2Region = require("ts-ip2region2");
 require("twikoo-func/utils/lib").getIpToRegion = () => {
   return {
     create() {
@@ -18,6 +16,8 @@ require("twikoo-func/utils/lib").getIpToRegion = () => {
     },
   };
 };
+const twikoo = require("twikoo-vercel");
+const Ip2Region = require("ts-ip2region2");
 /**
  * Netlify 函数兼容 Vercel 函数实现
  * 复用 Twikoo Vercel 函数代码
