@@ -9,7 +9,11 @@ exports.handler = async function (event, context) {
   console.error("111111111", require("twikoo-func/utils").getIpRegion);
   require("twikoo-func/utils").getIpRegion = ({ ip, detail = false }) => {
     try {
-      const searcher = new Ip2Region.Ip2Region({ipVersion:'v6'});
+      const isIPv6 = ip.includes(":");
+      const dbPath = isIPv6 ? "db/ip2region_v6.xdb" : "db/ip2region_v4.xdb";
+      const searcher = new Ip2Region.Ip2Region(dbPath, {
+        ipVersion: isIPv6 ? "v6" : "v4",
+      });
       const result = searcher.search(ip);
       return result.region;
     } catch (e) {
