@@ -9,7 +9,7 @@ const twikoo = require('twikoo-vercel')
 exports.handler = async function (event, context) {
   process.env.VERCEL_URL = event.rawUrl.replace(/^https?:\/\//, '')
   process.env.TWIKOO_IP_HEADERS = JSON.stringify([
-    'headers.x-nf-client-connection-ip'
+    'headers.cf-connecting-ip','headers.x-nf-client-connection-ip'
   ])
   const result = {
     statusCode: 204,
@@ -24,7 +24,6 @@ exports.handler = async function (event, context) {
   try {
     request.body = JSON.parse(event.body)
   } catch (e) {}
-  console.log(event.headers);
   const response = {
     status: function (code) {
       result.statusCode = code
