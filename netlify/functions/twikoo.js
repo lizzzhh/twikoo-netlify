@@ -14,7 +14,12 @@ exports.handler = async function (event, context) {
         ipVersion: isIPv6 ? "v6" : "v4",
       });
       const result = searcher.search(ip);
-      return result.region;
+      return result.region
+        .split("|")
+        .filter((part) => part !== "0")
+        .filter((part, index, arr) => index === 0 || part !== arr[index - 1])
+        .slice(0, 3)
+        .join("-");
     } catch (e) {
       console.error(e);
       return "";
