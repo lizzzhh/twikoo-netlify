@@ -10,8 +10,7 @@ exports.handler = async function (event, context) {
   require("twikoo-func/utils").getIpRegion = ({ ip, detail = false }) => {
     try {
       const isIPv6 = ip.includes(":");
-      const dbPath = isIPv6 ? "db/ip2region_v6.xdb" : "db/ip2region_v4.xdb";
-      const searcher = new Ip2Region.Ip2Region(dbPath, {
+      const searcher = new Ip2Region.Ip2Region({
         ipVersion: isIPv6 ? "v6" : "v4",
       });
       const result = searcher.search(ip);
