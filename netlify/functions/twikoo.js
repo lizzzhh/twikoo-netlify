@@ -1,5 +1,13 @@
+/**
+ * Netlify 函数兼容 Vercel 函数实现
+ * 复用 Twikoo Vercel 函数代码
+ * Netlify functions doc:
+ * https://docs.netlify.com/functions/create/?fn-language=js
+ */
+exports.handler = async function (event, context) {
+  
 const Ip2Region = require("ts-ip2region2");
-console.log("111111111",require("twikoo-func/utils/lib").getIpToRegion);
+console.error("111111111",require("twikoo-func/utils/lib").getIpToRegion);
 require("twikoo-func/utils/lib").getIpToRegion = () => {
   return {
     create() {
@@ -18,16 +26,13 @@ require("twikoo-func/utils/lib").getIpToRegion = () => {
     },
   };
 };
-console.log("222222",require("twikoo-func/utils/lib").getIpToRegion);
+console.error("222222",require("twikoo-func/utils/lib").getIpToRegion);
 
 const twikoo = require("twikoo-vercel");
-/**
- * Netlify 函数兼容 Vercel 函数实现
- * 复用 Twikoo Vercel 函数代码
- * Netlify functions doc:
- * https://docs.netlify.com/functions/create/?fn-language=js
- */
-exports.handler = async function (event, context) {
+
+
+
+
   process.env.VERCEL_URL = event.rawUrl.replace(/^https?:\/\//, "");
   process.env.TWIKOO_IP_HEADERS = JSON.stringify([
     "headers.cf-connecting-ip",
